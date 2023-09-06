@@ -26,7 +26,7 @@ export const UploadFile: FC<Props> = () => {
           <iframe src="http://localhost:3000/" className="w-full h-full"></iframe>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button>close</button>
+          <button></button>
         </form>
       </dialog>
     </>
