@@ -1,4 +1,4 @@
-import { IconFileExport, IconSettings } from '@tabler/icons-react';
+import { IconFileExport, IconFileImport, IconSettings } from '@tabler/icons-react';
 import { useContext, useState } from 'react';
 
 import { useTranslation } from 'next-i18next';
@@ -13,6 +13,7 @@ import { SidebarButton } from '../../Sidebar/SidebarButton';
 import ChatbarContext from '../Chatbar.context';
 import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
+import { UploadFile } from '@/components/Settings/UploadFile';
 
 export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
@@ -41,6 +42,8 @@ export const ChatbarSettings = () => {
       {conversations.length > 0 ? (
         <ClearConversations onClearConversations={handleClearConversations} />
       ) : null}
+
+      <UploadFile />
 
       <Import onImport={handleImportConversations} />
 
