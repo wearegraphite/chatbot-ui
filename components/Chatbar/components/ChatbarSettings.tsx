@@ -43,7 +43,7 @@ export const ChatbarSettings = () => {
         <ClearConversations onClearConversations={handleClearConversations} />
       ) : null}
 
-      <UploadFile />
+      {process.env.NEXT_PUBLIC_UPLOAD_FILE_URL && <UploadFile />}
 
       <Import onImport={handleImportConversations} />
 

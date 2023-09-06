@@ -23,7 +23,7 @@ export const UploadFile: FC<Props> = () => {
 
       <dialog id="uploadIframeModal" className="modal">
         <div className="modal-box w-11/12 max-w-5xl h-full">
-          <iframe src="http://localhost:3000/" className="w-full h-full"></iframe>
+          <iframe src={process.env.NEXT_PUBLIC_UPLOAD_FILE_URL} className="w-full h-full"></iframe>
         </div>
         <form method="dialog" className="modal-backdrop">
           <button></button>
