@@ -40,7 +40,7 @@ import HomeContext from './home.context';
 import { HomeInitialState, initialState } from './home.state';
 
 import { v4 as uuidv4 } from 'uuid';
-import { PrivateAIModelID, PrivateAIModels } from '@/types/privateIA';
+import { PrivateAIModelID, PrivateAIModels } from '@/types/privateAI';
 import { getModelById } from '@/utils/app/model';
 
 interface Props {
@@ -407,7 +407,7 @@ const Home = ({
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const defaultModelId = (process.env.PRIVATE_IA_URL ? PrivateAIModelID.PRIVATE_IA :
+  const defaultModelId = (process.env.PRIVATE_AI_URL ? PrivateAIModelID.PRIVATE_AI :
     (process.env.DEFAULT_MODEL &&
       Object.values(OpenAIModelID).includes(
         process.env.DEFAULT_MODEL as OpenAIModelID,

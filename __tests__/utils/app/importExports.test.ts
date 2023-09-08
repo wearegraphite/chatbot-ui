@@ -13,7 +13,7 @@ import { OpenAIModelID, OpenAIModels } from '@/types/openai';
 
 import { describe, expect, it } from 'vitest';
 import { defaultPrompt } from '@/utils/app/prompts';
-import { PrivateAIModelID, PrivateAIModels } from '@/types/privateIA';
+import { PrivateAIModelID, PrivateAIModels } from '@/types/privateAI';
 
 describe('Export Format Functions', () => {
   describe('isExportFormatV1', () => {
@@ -102,8 +102,8 @@ describe('cleanData Functions', () => {
                 content: 'Hi',
               },
             ],
-            model: PrivateAIModels[PrivateAIModelID.PRIVATE_IA],
-            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_IA),
+            model: PrivateAIModels[PrivateAIModelID.PRIVATE_AI],
+            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_AI),
             temperature: DEFAULT_TEMPERATURE,
             folderId: null,
           },
@@ -158,8 +158,8 @@ describe('cleanData Functions', () => {
                 content: 'Hi',
               },
             ],
-            model: PrivateAIModels[PrivateAIModelID.PRIVATE_IA],
-            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_IA),
+            model: PrivateAIModels[PrivateAIModelID.PRIVATE_AI],
+            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_AI),
             temperature: DEFAULT_TEMPERATURE,
             folderId: null,
           },
@@ -194,8 +194,8 @@ describe('cleanData Functions', () => {
                 content: 'Hi',
               },
             ],
-            model: PrivateAIModels[PrivateAIModelID.PRIVATE_IA],
-            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_IA),
+            model: PrivateAIModels[PrivateAIModelID.PRIVATE_AI],
+            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_AI),
             temperature: DEFAULT_TEMPERATURE,
             folderId: null,
           },
@@ -213,7 +213,7 @@ describe('cleanData Functions', () => {
             name: 'prompt 1',
             description: '',
             content: '',
-            model: PrivateAIModels[PrivateAIModelID.PRIVATE_IA],
+            model: PrivateAIModels[PrivateAIModelID.PRIVATE_AI],
             folderId: null,
           },
         ],
@@ -237,8 +237,8 @@ describe('cleanData Functions', () => {
                 content: 'Hi',
               },
             ],
-            model: PrivateAIModels[PrivateAIModelID.PRIVATE_IA],
-            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_IA),
+            model: PrivateAIModels[PrivateAIModelID.PRIVATE_AI],
+            prompt: defaultPrompt(PrivateAIModelID.PRIVATE_AI),
             temperature: DEFAULT_TEMPERATURE,
             folderId: null,
           },
@@ -256,7 +256,7 @@ describe('cleanData Functions', () => {
             name: 'prompt 1',
             description: '',
             content: '',
-            model: PrivateAIModels[PrivateAIModelID.PRIVATE_IA],
+            model: PrivateAIModels[PrivateAIModelID.PRIVATE_AI],
             folderId: null,
           },
         ],

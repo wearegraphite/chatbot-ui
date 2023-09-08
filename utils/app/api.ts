@@ -1,9 +1,9 @@
 import { OpenAIModelID } from '@/types/openai';
 import { Plugin, PluginID } from '@/types/plugin';
-import { PrivateAIModelID } from '@/types/privateIA';
+import { PrivateAIModelID } from '@/types/privateAI';
 
 export enum EEntryPoints {
-  PRIVATE_AI = '/api/chatPrivateIA',
+  PRIVATE_AI = '/api/chatPrivateAI',
   GOOGLE = '/api/google',
   CHAT = '/api/chat',
 }

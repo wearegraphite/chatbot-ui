@@ -41,7 +41,7 @@ const handler = async (req: Request)/*: Promise<Response>*/ => {
 
     const completionParams = { ...paramDefaults, temperature, prompt: mergedPrompt };
 
-    const response = await fetch(`${process.env.PRIVATE_IA_URL}/completion`, {
+    const response = await fetch(`${process.env.PRIVATE_AI_URL}/completion`, {
       method: 'POST',
       body: JSON.stringify(completionParams),
       headers: {

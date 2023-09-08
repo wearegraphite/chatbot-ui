@@ -1,4 +1,4 @@
-import { PrivateAIModelID } from '@/types/privateIA';
+import { PrivateAIModelID } from '@/types/privateAI';
 import { Prompt } from '@/types/prompt';
 
 export const updatePrompt = (updatedPrompt: Prompt, allPrompts: Prompt[]) => {

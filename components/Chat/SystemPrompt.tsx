@@ -14,7 +14,7 @@ import { Prompt } from '@/types/prompt';
 
 import { PromptList } from './PromptList';
 import { VariableModal } from './VariableModal';
-import { PrivateAIModel } from '@/types/privateIA';
+import { PrivateAIModel } from '@/types/privateAI';
 import { OpenAIModel } from '@/types/openai';
 import { defaultPrompt } from '@/utils/app/prompts';
 

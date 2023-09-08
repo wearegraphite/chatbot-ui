@@ -3,7 +3,7 @@ import { OpenAIModelID, OpenAIModels } from '@/types/openai';
 
 import { DEFAULT_TEMPERATURE } from './const';
 import { defaultPrompt } from './prompts';
-import { PrivateAIModelID, PrivateAIModels } from '@/types/privateIA';
+import { PrivateAIModelID, PrivateAIModels } from '@/types/privateAI';
 
 export const cleanSelectedConversation = (conversation: Conversation) => {
   // added model for each conversation (3/20/23)
@@ -18,7 +18,7 @@ export const cleanSelectedConversation = (conversation: Conversation) => {
   if (!updatedConversation.model) {
     updatedConversation = {
       ...updatedConversation,
-      model: updatedConversation.model || PrivateAIModels[PrivateAIModelID.PRIVATE_IA],
+      model: updatedConversation.model || PrivateAIModels[PrivateAIModelID.PRIVATE_AI],
     };
   }
 
@@ -69,7 +69,7 @@ export const cleanConversationHistory = (history: any[]): Conversation[] => {
   return history.reduce((acc: any[], conversation) => {
     try {
       if (!conversation.model) {
-        conversation.model = PrivateAIModels[PrivateAIModelID.PRIVATE_IA];
+        conversation.model = PrivateAIModels[PrivateAIModelID.PRIVATE_AI];
       }
 
       if (!conversation.prompt) {

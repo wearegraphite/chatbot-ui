@@ -27,7 +27,7 @@ import HomeContext from '@/pages/api/home/home.context';
 import { PluginSelect } from './PluginSelect';
 import { PromptList } from './PromptList';
 import { VariableModal } from './VariableModal';
-import { PrivateAIModelID } from '@/types/privateIA';
+import { PrivateAIModelID } from '@/types/privateAI';
 
 interface Props {
   onSend: (message: Message, plugin: Plugin | null) => void;

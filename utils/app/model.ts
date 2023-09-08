@@ -1,5 +1,5 @@
 import { OpenAIModel, OpenAIModelID, OpenAIModels } from "@/types/openai";
-import { PrivateAIModel, PrivateAIModelID, PrivateAIModels } from "@/types/privateIA";
+import { PrivateAIModel, PrivateAIModelID, PrivateAIModels } from "@/types/privateAI";
 
 export const getModelById = (modelId: string): PrivateAIModel | OpenAIModel => {
     if (Object.keys(PrivateAIModelID).find(key => PrivateAIModelID[key as keyof typeof PrivateAIModelID] === modelId)) {

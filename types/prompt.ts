@@ -1,5 +1,5 @@
 import { OpenAIModel } from './openai';
-import { PrivateAIModel } from './privateIA';
+import { PrivateAIModel } from './privateAI';
 
 export interface Prompt {
   id: string;
