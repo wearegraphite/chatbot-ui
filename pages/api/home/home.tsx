@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { GetServerSideProps } from 'next';
@@ -9,7 +9,7 @@ import Head from 'next/head';
 import { useCreateReducer } from '@/hooks/useCreateReducer';
 
 import useErrorService from '@/services/errorService';
-import useApiService from '@/services/useApiService';
+import useApiService, { GetModelsRequestProps } from '@/services/useApiService';
 
 import {
   cleanConversationHistory,
@@ -78,7 +78,11 @@ const Home = ({
 
   const stopConversationRef = useRef<boolean>(false);
 
-  const { data, error, refetch } = useQuery(
+  const [data, setData] = useState<GetModelsRequestProps | null | undefined>();
+  const [error, setError] = useState<any>(null);
+  const [refetch, setRefetch] = useState<boolean>(false);
+
+  const { data: dataQuery, error: errorQuery, refetch: refetchQuery } = useQuery(
     ['GetModels', apiKey, serverSideApiKeyIsSet],
     ({ signal }) => {
       if (!apiKey && !serverSideApiKeyIsSet) return null;
@@ -90,8 +94,13 @@ const Home = ({
         signal,
       );
     },
-    { enabled: true, refetchOnMount: false },
+    { enabled: !data, refetchOnMount: false },
   );
+
+  useEffect(() => {
+    setData(dataQuery);
+    setError(errorQuery);
+  }, [dataQuery, errorQuery]);
 
   useEffect(() => {
     if (data) dispatch({ field: 'models', value: data });
