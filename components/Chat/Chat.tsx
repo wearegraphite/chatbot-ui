@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
 
 import { useTranslation } from 'next-i18next';
 
-import { getEndpoint } from '@/utils/app/api';
+import { EEntryPoints, getEndpoint } from '@/utils/app/api';
 import {
   saveConversation,
   saveConversations,
@@ -161,7 +161,36 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             const { value, done: doneReading } = await reader.read();
             done = doneReading;
             const chunkValue = decoder.decode(value);
-            text += chunkValue;
+
+            // special case for PrivateAI
+            if (endpoint === EEntryPoints.PRIVATE_AI) {
+              // parse all sse events and add them to value
+              const regex = /^(\S+):\s(.*)$/gm;
+              // @ts-ignore
+              for (const match of chunkValue.matchAll(regex)) {
+                (value as any)[match[1]] = match[2];
+              }
+
+              // @ts-ignore
+              if (value.data) {
+                // since we know this is llama.cpp, let's just decode the json in data
+                // @ts-ignore
+                value.data = JSON.parse(value.data);
+                // @ts-ignore
+                text += value.data.content;
+                console.log('content', text)
+
+                // if we got a stop token from server, we will break here
+                // @ts-ignore
+                if (value.data.stop) {
+                  done = true;
+                  break;
+                }
+              }
+            } else {
+              text += chunkValue;
+            }
+
             if (isFirst) {
               isFirst = false;
               const updatedMessages: Message[] = [

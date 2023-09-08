@@ -1,6 +1,7 @@
 import { ChatBody } from "@/types/chat";
 import { OpenAIError } from "@/utils/server";
 
+
 export const config = {
   runtime: 'edge',
 };
@@ -36,7 +37,7 @@ const handler = async (req: Request)/*: Promise<Response>*/ => {
     }
 
     // merge prompt and messages
-    let mergedPrompt = `${prompt}\n\n${messages.map((m: { role: string, content: string }, index) => `${m.role}: ${m.content}`).join('\n')}`;
+    let mergedPrompt = `${prompt}\n${messages.map((m: { role: string, content: string }) => `${m.role}: ${m.content}`).join('\n')}`;
 
     const completionParams = { ...paramDefaults, temperature, prompt: mergedPrompt };
 
@@ -51,68 +52,8 @@ const handler = async (req: Request)/*: Promise<Response>*/ => {
       signal: controller.signal,
     });
 
-    const reader = response?.body?.getReader();
-    const decoder = new TextDecoder();
-
-    let content = "";
-
-    // try {
-    let cont = true;
-
-    while (cont) {
-      const result = await reader?.read();
-      if (result?.done) {
-        break;
-      }
-
-      if (result === undefined) {
-        continue;
-      }
-
-      // sse answers in the form multiple lines of: value\n with data always present as a key. in our case we
-      // mainly care about the data: key here, which we expect as json
-      const text = decoder.decode(result.value);
-
-      // parse all sse events and add them to result
-      const regex = /^(\S+):\s(.*)$/gm;
-      // @ts-ignore
-      for (const match of text.matchAll(regex)) {
-        (result as any)[match[1]] = match[2]
-      }
-
-      // since we know this is llama.cpp, let's just decode the json in data
-      // @ts-ignore
-      result.data = JSON.parse(result.data);
-      // @ts-ignore
-      content += result.data.content;
-      console.log('content', content)
-
-      // // yield
-      // yield result;
-
-      // if we got a stop token from server, we will break here
-      // @ts-ignore
-      // if (result.data.stop) {
-      //   // @ts-ignore
-      //   if (result.data.generation_settings) {
-      //     // @ts-ignore
-      //     generation_settings = result.data.generation_settings;
-      //   }
-      //   break;
-      // }
-    }
-    // } catch (e: any) {
-    //   if (e.name !== 'AbortError') {
-    //     console.error("llama error: ", e);
-    //   }
-    //   throw e;
-    // }
-    // finally {
-    //   controller.abort();
-    // }
-
-    return new Response(content);
-
+    // @ts-ignore
+    return new Response(response?.body);
   } catch (error) {
     console.error(error);
     if (error instanceof OpenAIError) {
