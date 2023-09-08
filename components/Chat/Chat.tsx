@@ -178,7 +178,6 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                 value.data = JSON.parse(value.data);
                 // @ts-ignore
                 text += value.data.content;
-                console.log('content', text)
 
                 // if we got a stop token from server, we will break here
                 // @ts-ignore

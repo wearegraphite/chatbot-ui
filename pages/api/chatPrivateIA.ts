@@ -1,4 +1,4 @@
-import { ChatBody } from "@/types/chat";
+import { ChatBody, Message } from "@/types/chat";
 import { OpenAIError } from "@/utils/server";
 
 
@@ -37,7 +37,7 @@ const handler = async (req: Request)/*: Promise<Response>*/ => {
     }
 
     // merge prompt and messages
-    let mergedPrompt = `${prompt}\n${messages.map((m: { role: string, content: string }) => `${m.role}: ${m.content}`).join('\n')}`;
+    const mergedPrompt = `${prompt}\n${messages.map((m: Message) => `${m.role}: ${m.content}`).join('\n')}\nassistant: `;
 
     const completionParams = { ...paramDefaults, temperature, prompt: mergedPrompt };
 
