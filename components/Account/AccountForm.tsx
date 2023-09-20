@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Router from 'next/router';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 const AccountForm = ({ session }: { session: Session | null }) => {
     const { t } = useTranslation('user');
@@ -16,34 +17,34 @@ const AccountForm = ({ session }: { session: Session | null }) => {
 
     const getProfile = useCallback(async () => {
         try {
-            setLoading(true)
+            setLoading(true);
 
             let { data, error, status } = await supabase
                 .from('profiles')
                 .select(`full_name, username, website, avatar_url`)
                 .eq('auth_id', user?.id)
-                .single()
+                .single();
 
             if (error && status !== 406) {
-                throw error
+                throw error;
             }
 
             if (data) {
-                setFullname(data.full_name)
-                setUsername(data.username)
-                setWebsite(data.website)
-                setAvatarUrl(data.avatar_url)
+                setFullname(data.full_name);
+                setUsername(data.username);
+                setWebsite(data.website);
+                setAvatarUrl(data.avatar_url);
             }
         } catch (error) {
-            alert(t('Error loading user data!'))
+            toast.error(t('Error loading user data!'));
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }, [user, supabase]);
 
     useEffect(() => {
         if (user) {
-            getProfile()
+            getProfile();
         }
     }, [user, getProfile]);
 
@@ -58,21 +59,27 @@ const AccountForm = ({ session }: { session: Session | null }) => {
         avatar_url: string | null
     }) {
         try {
-            setLoading(true)
+            setLoading(true);
 
-            let { error } = await supabase.from('profiles').upsert({
+            let { error } = await supabase.from('profiles').update({
                 full_name: fullname,
                 username,
                 website,
                 avatar_url,
                 updated_at: new Date().toISOString(),
             })
-            if (error) throw error
-            alert(t('Profile updated!'))
+                .eq('auth_id', user?.id);
+
+            if (error) {
+                throw error;
+            }
+
+            toast.success(t('Profile updated!'));
         } catch (error) {
-            alert(t('Error updating the data!'))
+            toast.error(t('Error updating the data!'));
+            getProfile();
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
 
