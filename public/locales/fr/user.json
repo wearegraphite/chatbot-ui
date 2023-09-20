@@ -1,0 +1,18 @@
+{
+    "Login in error": "Erreur de connexion",
+    "Email address": "Adresse e-mail",
+    "Password": "Mot de passe",
+    "Password must contain 8 or more characters": "Le mot de passe doit contenir au moins 8 caractères",
+    "Forgot password?": "Mot de passe oublié ?",
+    "Sign in": "Se connecter",
+    "Error loading user data!": "Erreur lors du chargement des données utilisateur !",
+    "Profile updated!": "Profil mis à jour !",
+    "Error updating the data!": "Erreur lors de la mise à jour des données !",
+    "Email": "E-mail",
+    "Full Name": "Nom complet",
+    "Username": "Nom d'utilisateur",
+    "Website": "Site web",
+    "Loading ...": "Chargement ...",
+    "Update": "Mettre à jour",
+    "Sign out": "Déconnexion"
+}

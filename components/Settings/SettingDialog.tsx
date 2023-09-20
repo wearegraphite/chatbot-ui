@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useReducer, useRef } from 'react';
+import { FC, useContext, useEffect, useReducer, useRef, useState } from 'react';
 
 import { useTranslation } from 'next-i18next';
 
@@ -9,6 +9,8 @@ import { getSettings, saveSettings } from '@/utils/app/settings';
 import { Settings } from '@/types/settings';
 
 import HomeContext from '@/pages/api/home/home.context';
+import AccountForm from '../Account/AccountForm';
+import { Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 interface Props {
   open: boolean;
@@ -47,6 +49,21 @@ export const SettingDialog: FC<Props> = ({ open, onClose }) => {
     homeDispatch({ field: 'lightMode', value: state.theme });
     saveSettings(state);
   };
+
+  const supabase = createClientComponentClient();
+  const [session, setSession] = useState<Session | null>(null);
+
+  const getData = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
+
+    setSession(session);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   // Render nothing if the dialog is not open.
   if (!open) {
@@ -97,6 +114,10 @@ export const SettingDialog: FC<Props> = ({ open, onClose }) => {
             >
               {t('Save')}
             </button>
+
+            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+
+            <AccountForm session={session} />
           </div>
         </div>
       </div>

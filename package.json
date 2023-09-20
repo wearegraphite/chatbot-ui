@@ -13,7 +13,10 @@
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.2",
+    "@hookform/resolvers": "^3.3.1",
     "@supabase/auth-helpers-nextjs": "^0.8.1",
+    "@supabase/auth-ui-react": "^0.4.5",
+    "@supabase/auth-ui-shared": "^0.1.7",
     "@supabase/supabase-js": "^2.33.2",
     "@tabler/icons-react": "^2.9.0",
     "eventsource-parser": "^0.1.0",
@@ -23,6 +26,7 @@
     "openai": "^3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.46.1",
     "react-hot-toast": "^2.4.0",
     "react-i18next": "^12.2.0",
     "react-markdown": "^8.0.5",
@@ -31,10 +35,12 @@
     "rehype-mathjax": "^4.0.2",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@mozilla/readability": "^0.4.4",
+    "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/typography": "^0.5.9",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/jsdom": "^21.1.1",
