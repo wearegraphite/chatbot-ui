@@ -69,11 +69,12 @@ export default function AuthForm() {
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                                 {t('Password')}
                             </label>
-                            <div className="text-sm">
+                            {/* TODO add forgot system */}
+                            {/* <div className="text-sm">
                                 <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     {t('Forgot password?')}
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="mt-2">
                             <input
