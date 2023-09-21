@@ -1,5 +1,3 @@
-'use client'
-
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useState } from 'react';
 import * as yup from 'yup';
@@ -29,6 +27,7 @@ export default function AuthForm() {
         handleSubmit,
         formState: { errors },
         reset,
+        getValues,
     } = useForm<ILoginForm>({ resolver: yupResolver(formSchema) });
 
     const onSubmitHandler = handleSubmit(async (formData) => {
@@ -69,7 +68,7 @@ export default function AuthForm() {
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                                 {t('Password')}
                             </label>
-                            {/* TODO add forgot system */}
+                            {/* TODO forgot password */}
                             {/* <div className="text-sm">
                                 <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     {t('Forgot password?')}
