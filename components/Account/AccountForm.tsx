@@ -12,8 +12,8 @@ import { get } from 'http';
 interface IAccountFrom {
     fullname: string;
     username: string;
-    website?: string;
-    avatarUrl?: string;
+    website?: string | null;
+    avatarUrl?: string | null;
 }
 
 const AccountForm = ({ session }: { session: Session | null }) => {
