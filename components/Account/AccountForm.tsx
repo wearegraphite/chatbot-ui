@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { get } from 'http';
 
 interface IAccountFrom {
     fullname: string;
@@ -33,10 +32,8 @@ const AccountForm = ({ session }: { session: Session | null }) => {
         register,
         handleSubmit,
         formState: { errors },
-        reset,
-        getValues,
         setValue,
-    } = useForm<IAccountFrom>({ resolver: yupResolver(formSchema) });
+    } = useForm<IAccountFrom>({ defaultValues: { fullname: '', username: '', website: '', avatarUrl: '' }, resolver: yupResolver(formSchema) });
 
     const getProfile = useCallback(async () => {
         try {
@@ -59,7 +56,7 @@ const AccountForm = ({ session }: { session: Session | null }) => {
                 setValue('avatarUrl', data.avatar_url);
             }
         } catch (error) {
-            toast.error(t('Error loading user data!'));
+            console.log('Error load profile', error);
         } finally {
             setLoading(false);
         }
@@ -75,13 +72,15 @@ const AccountForm = ({ session }: { session: Session | null }) => {
         try {
             setLoading(true);
 
-            let { error } = await supabase.from('profiles').update({
+            let { error } = await supabase.from('profiles').upsert({
                 full_name: formData.fullname,
                 username: formData.username,
                 website: formData.website,
                 updated_at: new Date().toISOString(),
-            })
-                .eq('auth_id', user?.id);
+                avatar_url: formData.avatarUrl,
+                auth_id: user?.id,
+            }, { onConflict: 'auth_id' })
+            //.eq('auth_id', user?.id);
 
             if (error) {
                 throw error;

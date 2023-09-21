@@ -12,7 +12,7 @@ interface ILoginForm {
     password: string;
 }
 
-export default function AuthForm() {
+export default function SignInForm() {
     const { t } = useTranslation('user');
     const supabase = createClientComponentClient();
     const [loading, setLoading] = useState(false);
@@ -35,10 +35,9 @@ export default function AuthForm() {
         const { data, error } = await supabase.auth.signInWithPassword({
             email: formData.email,
             password: formData.password,
-        })
+        });
 
         if (error) {
-            reset();
             toast.error(t('Login in error'))
             setLoading(false);
         } else {
@@ -96,6 +95,12 @@ export default function AuthForm() {
                     </div>
                 </form>
 
+                <p className="mt-10 text-center text-sm text-gray-500">
+                    {t('Not a member?') + ' '}
+                    <a href="/sign-up" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        {t('Sign up now')}
+                    </a>
+                </p>
             </div>
         </div>
     );

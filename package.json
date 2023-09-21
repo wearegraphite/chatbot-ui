@@ -17,7 +17,7 @@
     "@supabase/auth-helpers-nextjs": "^0.8.1",
     "@supabase/auth-ui-react": "^0.4.5",
     "@supabase/auth-ui-shared": "^0.1.7",
-    "@supabase/supabase-js": "^2.33.2",
+    "@supabase/supabase-js": "^2.36.0",
     "@tabler/icons-react": "^2.9.0",
     "eventsource-parser": "^0.1.0",
     "i18next": "^22.4.13",
