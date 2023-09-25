@@ -14,7 +14,6 @@ export const ModelSelect = () => {
   const {
     state: { selectedConversation, models, defaultModelId },
     handleUpdateConversation,
-    dispatch: homeDispatch,
   } = useContext(HomeContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,9 +31,8 @@ export const ModelSelect = () => {
       <label className="mb-2 text-left text-neutral-700 dark:text-neutral-400">
         {t('Model')}
       </label>
-      <div className="w-full rounded-lg border border-neutral-200 bg-transparent pr-2 text-neutral-900 dark:border-neutral-600 dark:text-white">
-        <select
-          className="w-full bg-transparent p-2"
+      <select
+        className="w-full rounded-lg border border-neutral-200 bg-transparent pr-2 text-neutral-900 dark:border-neutral-600 dark:text-white"
           placeholder={t('Select a model') || ''}
           value={selectedConversation?.model?.id || defaultModelId}
           onChange={handleChange}
@@ -50,8 +48,7 @@ export const ModelSelect = () => {
                 : model.name}
             </option>
           ))}
-        </select>
-      </div>
+      </select>
       {!Object.keys(PrivateAIModelID).find(key => PrivateAIModelID[key as keyof typeof PrivateAIModelID] === selectedConversation?.model?.id) && <div className="w-full mt-3 text-left text-neutral-700 dark:text-neutral-400 flex items-center">
         <a
           href="https://platform.openai.com/account/usage"

@@ -1,3 +1,4 @@
+import { Project } from './inference';
 import { OpenAIModel } from './openai';
 import { PrivateAIModel } from './privateAI';
 
@@ -24,4 +25,5 @@ export interface Conversation {
   prompt: string;
   temperature: number;
   folderId: string | null;
+  project?: Project;
 }

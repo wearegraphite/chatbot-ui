@@ -14,6 +14,7 @@ import ChatbarContext from '../Chatbar.context';
 import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
 import { UploadFile } from '@/components/Settings/UploadFile';
+import { SelectProject } from '@/components/Settings/ProjectSelect';
 
 export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
